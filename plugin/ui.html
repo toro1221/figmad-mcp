@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 12px;
+      color: var(--figma-color-text);
+      background: var(--figma-color-bg);
+      padding: 16px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #dc2626;
+    }
+    .status-dot.connected {
+      background: #16a34a;
+    }
+    .status-text {
+      font-weight: 500;
+    }
+    .section {
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--figma-color-text-secondary);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .input-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid var(--figma-color-border);
+      border-radius: 4px;
+      background: var(--figma-color-bg-secondary);
+      color: var(--figma-color-text);
+      font-size: 12px;
+    }
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      background: var(--figma-color-bg-brand);
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .log {
+      background: var(--figma-color-bg-secondary);
+      border-radius: 4px;
+      padding: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 10px;
+    }
+    .log-entry {
+      padding: 2px 0;
+      border-bottom: 1px solid var(--figma-color-border);
+    }
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+    .log-time {
+      color: var(--figma-color-text-secondary);
+    }
+    .log-cmd {
+      color: var(--figma-color-text-brand);
+    }
+    .log-success {
+      color: #16a34a;
+    }
+    .log-error {
+      color: #dc2626;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="status-dot" id="statusDot"></div>
+    <span class="status-text" id="statusText">Disconnected</span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Connection</div>
+    <div class="input-group">
+      <input type="text" id="wsUrl" value="ws://localhost:9001" placeholder="WebSocket URL">
+      <button id="connectBtn">Connect</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Activity Log</div>
+    <div class="log" id="log"></div>
+  </div>
+</body>
+</html>

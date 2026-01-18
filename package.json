@@ -1,0 +1,53 @@
+{
+  "name": "figmad-mcp",
+  "version": "0.1.0",
+  "description": "Figma Design MCP Server - Create, capture, and manage Figma designs via AI agents",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "figmad-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "clean": "rm -rf dist",
+    "plugin:build": "cd plugin && npm run build",
+    "plugin:watch": "cd plugin && npm run watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@figma/rest-api-spec": "^0.20.0",
+    "ws": "^8.18.0",
+    "playwright": "^1.48.0",
+    "zod": "^3.23.8",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/ws": "^8.5.13",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "eslint": "^9.16.0",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "figma",
+    "mcp",
+    "model-context-protocol",
+    "design",
+    "ai",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT"
+}

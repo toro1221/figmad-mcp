@@ -1,0 +1,12 @@
+{
+  "name": "figmad-bridge",
+  "id": "figmad-mcp-bridge",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
+  "editorType": ["figma", "figjam"],
+  "networkAccess": {
+    "allowedDomains": ["*"],
+    "reasoning": "WebSocket connection to local MCP server"
+  }
+}
