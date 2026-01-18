@@ -98,6 +98,8 @@ Add to `claude_desktop_config.json`:
 | `capture_webpage` | Screenshot and analyze a webpage |
 | `reconstruct_page` | Recreate captured page in Figma |
 | `generate_ui` | Generate UI from text description |
+| `analyze_codebase` | Extract components and design tokens from code |
+| `sync_design_tokens` | Compare/sync tokens between Figma and code |
 
 ## Example Prompts
 
@@ -109,6 +111,10 @@ Create a landing page with a header, hero section with headline and CTA button, 
 Capture https://example.com and recreate it in Figma
 
 Export the frame "Hero Section" as a PNG
+
+Analyze my React codebase at /path/to/project and extract design tokens
+
+Compare design tokens between my Figma file and codebase
 ```
 
 ## Architecture

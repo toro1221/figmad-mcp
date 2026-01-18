@@ -28,6 +28,8 @@ import {
   captureWebpageTool, captureWebpageToolDefinition,
   reconstructPage, reconstructPageToolDefinition,
   generateUI, generateUIToolDefinition,
+  analyzeCodebaseTool, analyzeCodebaseToolDefinition,
+  syncDesignTokens, syncDesignTokensToolDefinition,
 } from './tools/orchestrated/index.js';
 
 const logger = createLogger('server');
@@ -285,6 +287,36 @@ export function createServer(): McpServer {
     async (params) => {
       try {
         const result = await generateUI(params as Parameters<typeof generateUI>[0]);
+        return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
+      } catch (error) {
+        const { code, message } = formatErrorForMcp(error);
+        return { content: [{ type: 'text', text: `Error [${code}]: ${message}` }], isError: true };
+      }
+    }
+  );
+
+  server.tool(
+    analyzeCodebaseToolDefinition.name,
+    analyzeCodebaseToolDefinition.description,
+    analyzeCodebaseToolDefinition.inputSchema,
+    async (params) => {
+      try {
+        const result = await analyzeCodebaseTool(params as Parameters<typeof analyzeCodebaseTool>[0]);
+        return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
+      } catch (error) {
+        const { code, message } = formatErrorForMcp(error);
+        return { content: [{ type: 'text', text: `Error [${code}]: ${message}` }], isError: true };
+      }
+    }
+  );
+
+  server.tool(
+    syncDesignTokensToolDefinition.name,
+    syncDesignTokensToolDefinition.description,
+    syncDesignTokensToolDefinition.inputSchema,
+    async (params) => {
+      try {
+        const result = await syncDesignTokens(params as Parameters<typeof syncDesignTokens>[0]);
         return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
       } catch (error) {
         const { code, message } = formatErrorForMcp(error);
